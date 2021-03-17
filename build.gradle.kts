@@ -5,10 +5,11 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.micronaut.application") version "1.3.4"
     id("com.google.cloud.tools.jib") version "2.6.0"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.4.10"
 }
 
 version = "0.1"
-group = "pwr.int"
+group = "pwr.aiir"
 
 val kotlinVersion=project.properties.get("kotlinVersion")
 repositories {
@@ -24,6 +25,10 @@ micronaut {
     }
 }
 
+noArg {
+    annotation("pwr.aiir.annotation.NoArg")
+}
+
 dependencies {
     kapt("io.micronaut.data:micronaut-data-processor")
     kapt("io.micronaut.openapi:micronaut-openapi")
@@ -37,13 +42,18 @@ dependencies {
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-jdbc")
+    //implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+    implementation("io.micronaut.mongodb:micronaut-mongo-reactive")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
-    runtimeOnly("io.micronaut:micronaut-discovery-client")
+    //implementation("io.micronaut.kafka:micronaut-kafka")
+    //runtimeOnly("io.micronaut:micronaut-discovery-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-    runtimeOnly("com.h2database:h2")
+    //runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.testcontainers:testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
+    testRuntimeOnly("org.testcontainers:postgresql")
 }
 
 
