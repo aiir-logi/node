@@ -9,7 +9,7 @@ import pwr.aiir.logs.LogMongoRepository
 
 
 @Controller("/logs")
-class PersonController(private val logRepository : LogMongoRepository) {
+class LogController(private val logRepository : LogMongoRepository) {
 
 
     @Get("/{id}")
