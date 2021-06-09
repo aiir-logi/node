@@ -12,6 +12,7 @@ import io.reactivex.functions.Function
 import org.bson.types.ObjectId
 import javax.inject.Singleton
 import org.bson.conversions.Bson
+import java.time.LocalDateTime
 
 
 @Singleton
@@ -35,6 +36,14 @@ class LogMongoRepository(private val mongoClient : MongoClient) {
                 .find(Filters.eq("_id", id))
                 .limit(1)
         ).firstElement()
+    }
+
+    fun findAllByDateBetween(startDate: LocalDateTime, endDate: LocalDateTime): Single<List<Log?>?>? {
+        return Flowable.fromPublisher(
+                getCollection()
+                        .find(Filters.and(Filters.gte("date", startDate),
+                                Filters.lte("date", endDate)))
+        ).toList()
     }
 
     private fun getCollection(): MongoCollection<Log?> {
