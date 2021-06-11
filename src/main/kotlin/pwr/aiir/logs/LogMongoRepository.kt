@@ -44,6 +44,10 @@ class LogMongoRepository(private val mongoClient : MongoClient) {
         ).firstElement()
     }
 
+    fun findByFilter(filter : Bson): Single<List<Log?>?>? {
+        return Flowable.fromPublisher(getCollection().find(filter)).toList()
+    }
+
     private fun getCollection(): MongoCollection<Log?> {
 
         val codecRegistry: CodecRegistry = fromRegistries(
@@ -53,6 +57,6 @@ class LogMongoRepository(private val mongoClient : MongoClient) {
         )
         return mongoClient
             .getDatabase("logs")
-            .getCollection("log", Log::class.java).withCodecRegistry(codecRegistry)
+            .getCollection("log", Log::class.java)
     }
 }

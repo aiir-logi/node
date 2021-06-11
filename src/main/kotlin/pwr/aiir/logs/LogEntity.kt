@@ -1,13 +1,15 @@
 package pwr.aiir.logs
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
-import org.bson.types.ObjectId
 import java.time.Instant
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
-open class Log (
-    @JsonSerialize(using = ToStringSerializer::class)
-    var id : ObjectId? = null,
+@Entity
+class LogEntity (
+    @Id
+    var id : String?,
     var created: Instant?,
     override var thread: String?,
     override var level: String?,
@@ -18,6 +20,3 @@ open class Log (
     override var threadId: Int?,
     override var threadPriority: Int?
 ) : AbstractLog()
-
-
-
