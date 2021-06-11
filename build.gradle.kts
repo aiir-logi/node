@@ -82,7 +82,7 @@ dependencies {
     //implementation("io.micronaut.mongodb:micronaut-mongo-sync")
     implementation("io.micronaut.mongodb:micronaut-mongo-reactive")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
-    //implementation("io.micronaut.kafka:micronaut-kafka")
+    implementation("io.micronaut.kafka:micronaut-kafka")
     //runtimeOnly("io.micronaut:micronaut-discovery-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -94,7 +94,6 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured:4.3.1")
     testImplementation("org.testcontainers:mongodb:1.15.2")
     implementation("ch.rasc:bsoncodec:1.0.1")
-
 }
 
 
