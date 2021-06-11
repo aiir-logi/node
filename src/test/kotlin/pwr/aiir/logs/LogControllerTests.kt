@@ -28,7 +28,14 @@ import javax.inject.Inject
 class LogControllerTests : TestPropertyProvider {
 
     private val mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:4.0.10")).withExposedPorts(27017).apply { start() }
-    val log : Log = Log(ObjectId.get(), Instant.now(), mutableMapOf(Pair("type", "Log4j"), Pair("lineNo", "123")))
+    private val log : Log = Log(created = Instant.ofEpochMilli(1623421107277), thread = "main",
+        level = "ERROR",
+        loggerName = "com.example.loggenerator.LoggeneratorApplication",
+        message = "Logger works",
+        endOfBatch = false,
+        loggerFqcn = "org.apache.logging.log4j.spi.AbstractLogger",
+        threadId = 1,
+        threadPriority = 5)
 
 
     @Inject
@@ -78,7 +85,7 @@ class LogControllerTests : TestPropertyProvider {
             .statusCode(HttpStatus.SC_OK)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
             .body("id", equalTo(log.id.toString()))
-            .body("details.type", equalTo("Log4j"))
+            .body("message", equalTo("Logger works"))
     }
 
 

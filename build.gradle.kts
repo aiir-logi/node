@@ -78,6 +78,8 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.data:micronaut-data-jdbc")
     //implementation("io.micronaut.mongodb:micronaut-mongo-sync")
     implementation("io.micronaut.mongodb:micronaut-mongo-reactive")

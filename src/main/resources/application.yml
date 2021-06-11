@@ -48,6 +48,22 @@ jackson:
 #    registration:
 #      enabled: true
 #    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+jpa:
+  default:
+    packages-to-scan:
+      - 'pwr.aiir'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        #          auto: validate
+        #          auto: none
+        generate_statistics: true
 kafka:
   bootstrap:
     servers: localhost:9092
+  consumers:
+    default:
+      session:
+        timeout:
+          ms: 30000
