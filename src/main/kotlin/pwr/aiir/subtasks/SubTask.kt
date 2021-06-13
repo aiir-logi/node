@@ -19,6 +19,7 @@ data class SubTask (
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     var filters: List<Filter>?,
     @OneToMany(cascade = [CascadeType.ALL])
-    var results: List<LogEntity>?
+    var results: List<LogEntity>?,
+    var finished: Boolean = false,
 )
 

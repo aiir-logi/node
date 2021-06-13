@@ -9,15 +9,16 @@ import io.micronaut.http.annotation.Post
 import java.util.*
 
 @Controller("/subtasks")
-class SubTaskController(private val subtaskRepository: SubtaskRepository, private val subTaskService: SubTaskService) {
+class SubTaskController(private val subtaskRepository: SubtaskRepository,
+                        private val subTaskService: SubTaskService) {
 
     @Post
-    fun save(@Body subtask: SubTask) : HttpResponse<SubTask> {
+    fun save(@Body subtask: SubTask): HttpResponse<SubTask> {
         return HttpResponse.created(subtaskRepository.save(subtask))
     }
 
     @Post("/{id}")
-    fun run(@Parameter @PathVariable("id") id : UUID) {
+    fun run(@Parameter @PathVariable("id") id: UUID) {
         subTaskService.runSubTask(id)
     }
 }
