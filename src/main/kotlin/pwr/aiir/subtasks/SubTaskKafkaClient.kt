@@ -9,7 +9,7 @@ import io.micronaut.http.annotation.Body
 class SubTaskKafkaClient(private val subTaskService: SubTaskService) {
 
     @Topic("subTask")
-    fun receiveSubTask(@Body subTask: SubTask) {
+    fun receiveSubTask(subTask: SubTask) {
         subTaskService.runSubTask(subTask.id!!);
     }
 }
