@@ -10,16 +10,16 @@ import javax.persistence.*
 
 @Entity
 @NoArg
-data class SubTask (
-    @Id
-    @GeneratedValue
-    var id: UUID?,
-    var startDate: Instant,
-    var endDate: Instant,
-    @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
-    var filters: List<Filter>?,
-    @OneToMany(cascade = [CascadeType.ALL])
-    var results: List<LogEntity>?,
-    var finished: Boolean = false,
+data class SubTask(
+        @Id
+        @GeneratedValue
+        var id: UUID?,
+        var startDate: Instant,
+        var endDate: Instant,
+        @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+        var filters: List<Filter>?,
+        @OneToMany(cascade = [CascadeType.ALL])
+        var results: List<LogEntity>?,
+        var subTaskStatus: SubTaskStatus = SubTaskStatus.CREATED,
 )
 
