@@ -9,9 +9,14 @@ class SubTaskService(private val logService: LogService, private val subtaskRepo
 
     fun runSubTask(id: UUID) {
         var subtaskOptional = subtaskRepository.findById(id)
-        if(subtaskOptional.isPresent) {
+        if (subtaskOptional.isPresent) {
             var subtask = subtaskOptional.get()
+
+            subtask.subTaskStatus = SubTaskStatus.IN_PROGRESS
+            subtaskRepository.update(subtask)
+
             subtask.results = logService.findByDatesAndFilters(subtask.startDate, subtask.endDate, subtask.filters)
+            subtask.subTaskStatus = SubTaskStatus.DONE
 
             subtaskRepository.update(subtask)
         }
