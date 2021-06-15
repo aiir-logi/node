@@ -18,7 +18,7 @@ data class SubTask(
         var endDate: Instant,
         @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
         var filters: List<Filter>?,
-        @OneToMany(cascade = [CascadeType.ALL])
+        @ManyToMany(cascade = [CascadeType.ALL])
         var results: List<LogEntity>?,
         var subTaskStatus: SubTaskStatus = SubTaskStatus.CREATED,
 )
